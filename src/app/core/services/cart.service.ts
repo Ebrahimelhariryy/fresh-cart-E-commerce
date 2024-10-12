@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 
@@ -8,6 +8,7 @@ import { inject, Injectable } from '@angular/core';
 export class CartService {
 
 private _HttpClient=inject(HttpClient)
+productCount:BehaviorSubject<number>=new BehaviorSubject(0)
 
 
 addproducttocart(id:string):Observable<any>{

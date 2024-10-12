@@ -19,7 +19,9 @@
 body {
   font-family: var(--font-family) !important;
 }
-
+.mynav {
+  z-index: 2000;
+}
 .nav-link {
   transition: unset !important;
 }

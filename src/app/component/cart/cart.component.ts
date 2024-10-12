@@ -38,6 +38,7 @@ console.log(res)
 this.cartItem=res.data;
 this.loding=false
 this._ToastrService.info(res.status,'fresh cart')
+this._CartService.productCount.next(res.numOfCartItems)
 
     },
     error:(err)=>{
@@ -71,6 +72,7 @@ updatecount(id:string,count:number ):void{
   console.log(res)
   if(res.message= 'success'){
     this.cartItem={}as Icart
+    this._CartService.productCount.next(0)
   }
   
       },

@@ -14,11 +14,12 @@ import { CartComponent } from '../cart/cart.component';
 import { CartService } from '../../core/services/cart.service';
 import { log } from 'console';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CarouselModule,RouterLink,CurrencyPipe,TexttermPipe,SearchPipe,FormsModule],
+  imports: [CarouselModule,RouterLink,CurrencyPipe,TexttermPipe,SearchPipe,FormsModule,TranslateModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
@@ -35,6 +36,7 @@ private readonly _CategoriesService=inject(CategoriesService);
 private readonly _CartComponent=inject(CartService);
 private readonly _CartService=inject(CartService);
 customOptionsmain: OwlOptions = {
+  rtl:true,
   loop: true,
   mouseDrag: true,
   touchDrag: true,
@@ -52,6 +54,7 @@ customOptionsmain: OwlOptions = {
 customOptionscat: OwlOptions = {
   loop: true,
   mouseDrag: true,
+  rtl:true,
   touchDrag: true,
   pullDrag: true,
   dots: false,
@@ -113,6 +116,8 @@ addCart(id:string){
       console.log(res)
       this.loding=false;
       this._ToastrService.success(res.message,'fresh cart')
+      this._CartService.productCount.next(res.numOfCartItems)
+      console.log( this._CartService.productCount)
     },
     error:(err)=>{
       console.log(err)
